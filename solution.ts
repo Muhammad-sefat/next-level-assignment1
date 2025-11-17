@@ -1,4 +1,3 @@
-//todo problem -01
 type FormatValueType = string | number | boolean;
 
 function formatValue(value: FormatValueType) {
@@ -10,11 +9,6 @@ function formatValue(value: FormatValueType) {
     return !value;
   }
 }
-// console.log(formatValue("sefat"));
-// console.log(formatValue(20));
-// console.log(formatValue(false));
-
-//todo problem -02
 
 const getLength = (value: string | Array<unknown>): number => {
   if (typeof value === "string") {
@@ -25,10 +19,6 @@ const getLength = (value: string | Array<unknown>): number => {
   return 0;
 };
 
-// console.log(getLength("typescript is awesome"));
-// console.log(getLength([10, 20, 30, 40, 50, 60]));
-
-//todo problem -03
 class Person {
   name: string;
   age: number;
@@ -41,13 +31,8 @@ class Person {
   }
 }
 
-// const person1 = new Person("John Doe", 30);
-// console.log(person1.getDetails());
-
-// const person2 = new Person("Alice", 25);
-// console.log(person2.getDetails());
-
-// todo problem -04
+const person1 = new Person("John Doe", 30);
+const person2 = new Person("Alice", 25);
 
 type Item = {
   title: string;
@@ -63,9 +48,6 @@ const books = [
   { title: "Book C", rating: 5.0 },
 ];
 
-// console.log(filterByRating(books));
-
-// todo problem -05
 type User = {
   id: number;
   name: string;
@@ -85,9 +67,6 @@ const users = [
   { id: 5, name: "Sakib", email: "sakib@example.com", isActive: true },
 ];
 
-// console.log(filterActiveUsers(users));
-
-// todo problem -06
 interface Book {
   title: string;
   author: string;
@@ -110,10 +89,6 @@ const myBook: Book = {
   isAvailable: true,
 };
 
-printBookDetails(myBook);
-
-// todo problem -07
-
 function getUniqueValues(
   arr1: (number | string)[],
   arr2: (number | string)[]
@@ -128,14 +103,12 @@ function getUniqueValues(
     return false;
   }
 
-  // loop through arr1
   for (let i = 0; i < arr1.length; i++) {
     if (!exists(arr1[i])) {
       result.push(arr1[i]);
     }
   }
 
-  // loop through arr2
   for (let i = 0; i < arr2.length; i++) {
     if (!exists(arr2[i])) {
       result.push(arr2[i]);
@@ -147,4 +120,30 @@ function getUniqueValues(
 
 const array1 = [1, 2, 3, 4, 5];
 const array2 = [3, 4, 5, 6, 7];
-console.log(getUniqueValues(array1, array2));
+
+type Product = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+
+function calculateTotalPrice(products: Product[]): number {
+  if (products.length === 0) return 0;
+
+  return products.reduce((total, product) => {
+    const base = product.price * product.quantity;
+
+    const finalPrice = product.discount
+      ? base - (base * product.discount) / 100
+      : base;
+
+    return total + finalPrice;
+  }, 0);
+}
+
+const products = [
+  { name: "Pen", price: 10, quantity: 2 },
+  { name: "Notebook", price: 25, quantity: 3, discount: 10 },
+  { name: "Bag", price: 50, quantity: 1, discount: 20 },
+];
